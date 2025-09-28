@@ -25,7 +25,20 @@ class FetchAtpRankings extends Command
             $response = Http::withHeaders([
                 'User-Agent' => 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
                 'Accept-Language' => 'en-US,en;q=0.9',
-            ])->get($url);
+                'Accept' => 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,*/*;q=0.8',
+                'Referer' => 'https://www.atptour.com/',
+                'Cache-Control' => 'no-cache',
+            ])
+            // Ambiente Windows local pode não ter CA bundle configurado; evitar falhas de SSL no dev
+            ->withOptions(['verify' => false, 'timeout' => 25, 'follow_location' => true])
+            ->get($url);
+
+            if ($response->status() === 403 || !$response->ok()) {
+                // Fallback: usar proxy de leitura pública r.jina.ai (read-only) para obter o HTML
+                $proxyUrl = 'https://r.jina.ai/http://www.atptour.com/en/rankings/singles';
+                Log::warning('ATP primary fetch failed (status '.$response->status().'). Trying proxy...');
+                $response = Http::withOptions(['verify' => false, 'timeout' => 25])->get($proxyUrl);
+            }
 
             if (!$response->ok()) {
                 throw new \RuntimeException('Falha HTTP ao buscar ATP: status '.$response->status());

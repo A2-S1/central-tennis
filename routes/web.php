@@ -19,6 +19,7 @@ use App\Http\Controllers\CartController;
 use App\Http\Controllers\CheckoutController;
 use App\Http\Controllers\ClassifiedsController;
 use App\Http\Controllers\Admin\ClassifiedsAdminController;
+use App\Http\Controllers\PersonalRankingsController;
 
 Route::get('/', function () {
     if (auth()->check()) {
@@ -27,6 +28,15 @@ Route::get('/', function () {
     return view('landing', ['hideNavbarLinks' => true, 'hideNavbarEntire' => true]);
 });
 
+// Meus Rankings (CRUD pessoal)
+Route::middleware('auth')->group(function(){
+    Route::get('/my-rankings', [\App\Http\Controllers\PersonalRankingsController::class, 'index'])->name('personal_rankings.index');
+    Route::get('/my-rankings/create', [\App\Http\Controllers\PersonalRankingsController::class, 'create'])->name('personal_rankings.create');
+    Route::post('/my-rankings', [\App\Http\Controllers\PersonalRankingsController::class, 'store'])->name('personal_rankings.store');
+    Route::get('/my-rankings/{personal_ranking}/edit', [\App\Http\Controllers\PersonalRankingsController::class, 'edit'])->name('personal_rankings.edit');
+    Route::put('/my-rankings/{personal_ranking}', [\App\Http\Controllers\PersonalRankingsController::class, 'update'])->name('personal_rankings.update');
+    Route::delete('/my-rankings/{personal_ranking}', [\App\Http\Controllers\PersonalRankingsController::class, 'destroy'])->name('personal_rankings.destroy');
+});
 // Admin
 Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(function(){
     Route::get('/', [AdminController::class, 'index'])->name('dashboard');

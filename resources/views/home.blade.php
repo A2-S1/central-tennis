@@ -34,7 +34,7 @@
             <a href="{{ route('profile.edit') }}" class="list-group-item list-group-item-action py-2 {{ request()->routeIs('profile.edit') ? 'active' : '' }}"><i class="bi bi-person me-2"></i>Meu Perfil</a>
             <a href="{{ route('matches.index') }}" class="list-group-item list-group-item-action py-2 {{ request()->routeIs('matches.*') ? 'active' : '' }}"><i class="bi bi-controller me-2"></i>Painel de Jogos</a>
             <a href="{{ route('local_tournaments.index') }}" class="list-group-item list-group-item-action py-2 {{ request()->is('local-tournaments*') ? 'active' : '' }}"><i class="bi bi-trophy me-2"></i>Meus Torneios</a>
-            <a href="{{ route('rankings.index') }}" class="list-group-item list-group-item-action py-2 {{ request()->routeIs('rankings.index') ? 'active' : '' }}"><i class="bi bi-bar-chart-line me-2"></i>Meus Rankings</a>
+            <a href="{{ route('personal_rankings.index') }}" class="list-group-item list-group-item-action py-2 {{ request()->routeIs('personal_rankings.*') ? 'active' : '' }}"><i class="bi bi-bar-chart-line me-2"></i>Meus Rankings</a>
             <a href="{{ route('tournaments.index') }}" class="list-group-item list-group-item-action py-2 {{ request()->routeIs('tournaments.index') ? 'active' : '' }}"><i class="bi bi-search me-2"></i>Encontrar Torneios</a>
             <a href="{{ route('courts.index') }}" class="list-group-item list-group-item-action py-2 {{ request()->is('courts*') ? 'active' : '' }}"><i class="bi bi-building me-2"></i>Alugue uma Quadra</a>
           </div>
