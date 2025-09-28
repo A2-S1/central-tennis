@@ -82,6 +82,27 @@ Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(func
         Route::post('/{listing}/reject', [ClassifiedsAdminController::class, 'reject'])->name('reject');
         Route::post('/{listing}/delete', [ClassifiedsAdminController::class, 'destroy'])->name('delete');
     });
+
+    // Admin Rankings (camadas)
+    Route::prefix('rankings')->name('rankings.')->group(function(){
+        Route::get('/', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'index'])->name('index');
+        // Groups
+        Route::get('/groups/create', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'createGroup'])->name('groups.create');
+        Route::post('/groups', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'storeGroup'])->name('groups.store');
+        Route::get('/groups/{group}/edit', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'editGroup'])->name('groups.edit');
+        Route::put('/groups/{group}', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'updateGroup'])->name('groups.update');
+        Route::delete('/groups/{group}', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'deleteGroup'])->name('groups.delete');
+        // Tables
+        Route::get('/tables/create', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'createTable'])->name('tables.create');
+        Route::post('/tables', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'storeTable'])->name('tables.store');
+        Route::get('/tables/{table}/edit', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'editTable'])->name('tables.edit');
+        Route::put('/tables/{table}', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'updateTable'])->name('tables.update');
+        Route::delete('/tables/{table}', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'deleteTable'])->name('tables.delete');
+        // Entries
+        Route::get('/tables/{table}/entries', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'entries'])->name('entries');
+        Route::post('/tables/{table}/entries/clear', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'clearEntries'])->name('entries.clear');
+        Route::post('/tables/{table}/entries/import', [\App\Http\Controllers\Admin\RankingsAdminController::class, 'importEntries'])->name('entries.import');
+    });
 });
 
 // Torneios Locais (ordem importa para não conflitar com {local_tournament})
@@ -154,6 +175,12 @@ Route::get('/community', [CommunityController::class, 'index'])->name('community
 
 // Rankings ATP/WTA
 Route::get('/rankings', [RankingsController::class, 'index'])->name('rankings.index');
+
+// Rankings em camadas (estilo CBT)
+Route::get('/rankings-hub', [\App\Http\Controllers\RankingsPublicController::class, 'index'])->name('rankings.hub');
+Route::get('/rankings/group/{group:slug}', [\App\Http\Controllers\RankingsPublicController::class, 'groupShow'])->name('rankings.group');
+Route::get('/rankings/table/{table}', [\App\Http\Controllers\RankingsPublicController::class, 'tableShow'])->name('rankings.table');
+Route::get('/rankings/table/{table}/export', [\App\Http\Controllers\RankingsPublicController::class, 'tableExport'])->name('rankings.table.export');
 
 // Torneios
 Route::get('/tournaments', [TournamentsController::class, 'index'])->name('tournaments.index');
