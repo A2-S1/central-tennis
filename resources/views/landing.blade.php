@@ -2,10 +2,24 @@
 
 @section('content')
 <style>
-  .hero { background: linear-gradient(180deg, #eef6ff 0%, #e6f1ff 100%); }
-  .metrics { background:#0d2b59; color:#fff; }
+  :root{
+    --brand-primary:#0d2b59; /* azul marinho (logo) */
+    --brand-secondary:#00B050; /* verde (logo) */
+    /* CTA verde com contraste AA para texto branco */
+    --brand-cta:#007A33; 
+    --brand-cta-hover:#00682B;
+    --hero-bg-start:#eef6ff;
+    --hero-bg-end:#e6f1ff;
+  }
+  .hero { background: linear-gradient(180deg, var(--hero-bg-start) 0%, var(--hero-bg-end) 100%); }
+  .metrics { background:var(--brand-primary); color:#fff; }
   .hero-center { display:flex; align-items:center; justify-content:center; }
   .hero-card { max-width: 520px; width:100%; }
+  .btn-cta{ background: var(--brand-cta); color:#fff; border: none; }
+  .btn-cta:hover{ background: var(--brand-cta-hover); color:#fff; }
+  .btn-cta:focus{ box-shadow: 0 0 0 .2rem rgba(0,122,51,.25); }
+  .card-icon { width: 42px; height:42px; border-radius:10px; display:inline-flex; align-items:center; justify-content:center; background:rgba(13,43,89,.08); color:var(--brand-primary); }
+  .card h5 { display:flex; align-items:center; gap:.5rem; }
 </style>
 
 <div class="hero py-5">
@@ -29,7 +43,7 @@
                 <label class="form-label">Senha</label>
                 <input type="password" name="password" class="form-control" required placeholder="Informe sua senha">
               </div>
-              <button class="btn btn-primary w-100">Entrar na Plataforma</button>
+              <button class="btn btn-cta w-100">Entrar na Plataforma</button>
             </form>
             <div class="d-flex justify-content-between small">
               <a href="{{ route('password.request') }}">Esqueceu a senha?</a>
@@ -65,8 +79,8 @@
       <div class="col-md-4">
         <div class="card h-100 shadow-sm">
           <div class="card-body">
-            <h5 class="card-title">Encontre Torneios</h5>
-            <p class="card-text">Descubra eventos de Tênis, Beach Tennis e Padel perto de você e inscreva-se em poucos cliques.</p>
+            <h5 class="card-title"><span class="card-icon"><i class="bi bi-trophy"></i></span> Encontre Torneios</h5>
+            <p class="card-text">Descubra competições de Tênis, Beach Tennis e Padel próximas e faça sua inscrição online.</p>
             <a href="{{ route('tournaments.index') }}" class="btn btn-outline-primary btn-sm">Ver torneios</a>
           </div>
         </div>
@@ -74,8 +88,8 @@
       <div class="col-md-4">
         <div class="card h-100 shadow-sm">
           <div class="card-body">
-            <h5 class="card-title">Jogue nas melhores quadras</h5>
-            <p class="card-text">Explore quadras, fotos e avaliações. Faça contato e organize seus jogos.</p>
+            <h5 class="card-title"><span class="card-icon"><i class="bi bi-geo-alt"></i></span> Jogue nas melhores quadras</h5>
+            <p class="card-text">Veja fotos, avaliações e informações de contato para organizar seus jogos com facilidade.</p>
             <a href="{{ route('courts.index') }}" class="btn btn-outline-primary btn-sm">Onde jogar</a>
           </div>
         </div>
@@ -83,8 +97,8 @@
       <div class="col-md-4">
         <div class="card h-100 shadow-sm">
           <div class="card-body">
-            <h5 class="card-title">Loja & Classificados</h5>
-            <p class="card-text">Compre produtos novos na Loja e negocie itens usados nos Classificados.</p>
+            <h5 class="card-title"><span class="card-icon"><i class="bi bi-bag"></i></span> Loja & Classificados</h5>
+            <p class="card-text">Novos produtos na Loja e itens usados nos Classificados. Compare, negocie e jogue melhor.</p>
             <a href="{{ route('store.index') }}" class="btn btn-outline-primary btn-sm me-2">Loja</a>
             <a href="{{ route('classifieds.index') }}" class="btn btn-outline-secondary btn-sm">Classificados</a>
           </div>

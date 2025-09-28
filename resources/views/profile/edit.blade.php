@@ -17,7 +17,7 @@
               <label class="col-md-3 col-form-label text-md-end">Foto</label>
               <div class="col-md-7 d-flex align-items-center gap-3">
                 @if($user->avatar)
-                  <img src="{{ asset('storage/'.$user->avatar) }}" alt="avatar" class="rounded" style="height:72px;width:72px;object-fit:cover;">
+                  <img src="{{ asset('storage/'.$user->avatar) }}" alt="avatar" class="rounded" style="height:72px;width:72px;object-fit:contain;background:#fff;">
                 @else
                   <div class="text-muted small">Sem foto</div>
                 @endif

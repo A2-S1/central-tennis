@@ -44,7 +44,7 @@
       @media (max-width: 576px) {
         .navbar-brand { margin-right: 72px; }
       }
-      .avatar-thumb { width: 28px; height: 28px; border-radius: 50%; object-fit: cover; margin-right: 8px; }
+      .avatar-thumb { width: 28px; height: 28px; border-radius: 50%; object-fit: contain; background:#fff; margin-right: 8px; }
     </style>
 </head>
 <body>
