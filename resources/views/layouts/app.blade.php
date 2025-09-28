@@ -45,6 +45,13 @@
         .navbar-brand { margin-right: 72px; }
       }
       .avatar-thumb { width: 28px; height: 28px; border-radius: 50%; object-fit: contain; background:#fff; margin-right: 8px; }
+      /* Avatar utilities */
+      .avatar { object-fit: contain; background:#fff; border-radius: 50%; display: inline-block; }
+      .avatar-28 { width:28px; height:28px; }
+      .avatar-48 { width:48px; height:48px; }
+      .avatar-60 { width:60px; height:60px; }
+      .avatar-72 { width:72px; height:72px; }
+      .avatar-128 { width:128px; height:128px; }
     </style>
 </head>
 <body>

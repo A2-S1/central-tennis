@@ -38,7 +38,7 @@
           <div class="card-body d-flex align-items-start gap-3">
             <a href="{{ route('players.show', $p->slug ?? $p->id) }}" class="text-decoration-none">
               @if($p->avatar)
-                <img src="{{ asset('storage/'.$p->avatar) }}" alt="{{ $p->name }}" style="width:60px;height:60px;object-fit:contain;border-radius:50%;background:#fff">
+                <img src="{{ asset('storage/'.$p->avatar) }}" alt="{{ $p->name }}" class="avatar avatar-60">
               @else
                 <div style="width:60px;height:60px;border-radius:50%;background:#e9ecef;display:flex;align-items:center;justify-content:center;">👤</div>
               @endif

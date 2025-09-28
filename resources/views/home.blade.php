@@ -15,7 +15,7 @@
           <div class="card-body d-flex align-items-center py-2">
             @php($u = Auth::user())
             @if($u && $u->avatar)
-              <img src="{{ asset('storage/'.$u->avatar) }}" class="rounded-circle me-3" style="width:48px;height:48px;object-fit:contain;background:#fff;" alt="avatar">
+              <img src="{{ asset('storage/'.$u->avatar) }}" class="avatar avatar-48 rounded-circle me-3" alt="avatar">
             @else
               <div class="rounded-circle bg-secondary text-white d-flex align-items-center justify-content-center me-3" style="width:48px;height:48px;">{{ Str::upper(Str::substr($u->name ?? 'U',0,1)) }}</div>
             @endif
