@@ -9,6 +9,48 @@
 
   @if(session('status'))<div class="alert alert-success">{{ session('status') }}</div>@endif
 
+  <form method="GET" class="row g-2 mb-3">
+    <div class="col-md-4">
+      <input type="text" name="category" class="form-control" placeholder="Categoria" value="{{ $filters['category'] ?? '' }}">
+    </div>
+    <div class="col-md-3">
+      <input type="date" name="start_date" class="form-control" value="{{ $filters['start_date'] ?? '' }}">
+    </div>
+    <div class="col-md-3">
+      <input type="date" name="end_date" class="form-control" value="{{ $filters['end_date'] ?? '' }}">
+    </div>
+    <div class="col-md-2 d-grid">
+      <button class="btn btn-outline-secondary">Filtrar</button>
+    </div>
+  </form>
+
+  <div class="row g-3 mb-3">
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="text-muted small">Melhor posição</div>
+          <div class="display-6">{{ $summary['bestPosition'] ?: '—' }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="text-muted small">Total de pontos</div>
+          <div class="display-6">{{ number_format($summary['totalPoints'] ?? 0) }}</div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body">
+          <div class="text-muted small">Registros</div>
+          <div class="display-6">{{ $summary['totalCount'] ?? 0 }}</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="table-responsive">
     <table class="table table-striped align-middle">
       <thead>

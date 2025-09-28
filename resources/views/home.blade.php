@@ -76,6 +76,16 @@
           <div class="col-md-6">
             <div class="card h-100">
               <div class="card-body">
+                <div class="text-muted small">Meus rankings</div>
+                <div class="display-6">{{-- contador será simples via listagem --}}</div>
+                <a href="{{ route('personal_rankings.create') }}" class="btn btn-sm btn-primary mt-2">Cadastrar ranking</a>
+                <a href="{{ route('personal_rankings.index') }}" class="btn btn-sm btn-outline-secondary mt-2">Ver lista</a>
+              </div>
+            </div>
+          </div>
+          <div class="col-md-6">
+            <div class="card h-100">
+              <div class="card-body">
                 <div class="text-muted small">Meus torneios locais</div>
                 <div class="display-6">{{ $myLocalTournaments }}</div>
                 <a href="{{ route('local_tournaments.create') }}" class="btn btn-sm btn-primary mt-2">Cadastrar torneio</a>

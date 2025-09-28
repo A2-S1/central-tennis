@@ -8,13 +8,37 @@ use Illuminate\Support\Facades\Auth;
 
 class PersonalRankingsController extends Controller
 {
-    public function index()
+    public function index(\Illuminate\Http\Request $request)
     {
-        $items = PersonalRanking::where('user_id', Auth::id())
-            ->orderByDesc('date')
-            ->orderBy('position')
-            ->paginate(15);
-        return view('personal_rankings.index', compact('items'));
+        $q = PersonalRanking::where('user_id', Auth::id());
+        $cat = trim((string)$request->get('category'));
+        $start = $request->get('start_date');
+        $end = $request->get('end_date');
+
+        if ($cat !== '') { $q->where('category', 'like', "%$cat%"); }
+        if ($start) { $q->whereDate('date', '>=', $start); }
+        if ($end) { $q->whereDate('date', '<=', $end); }
+
+        $summaryQuery = clone $q;
+        $bestPosition = (clone $summaryQuery)->whereNotNull('position')->min('position');
+        $totalPoints = (clone $summaryQuery)->whereNotNull('points')->sum('points');
+        $totalCount = (clone $summaryQuery)->count();
+
+        $items = $q->orderByDesc('date')->orderBy('position')->paginate(15)->withQueryString();
+
+        return view('personal_rankings.index', [
+            'items' => $items,
+            'filters' => [
+                'category' => $cat,
+                'start_date' => $start,
+                'end_date' => $end,
+            ],
+            'summary' => [
+                'bestPosition' => $bestPosition,
+                'totalPoints' => $totalPoints,
+                'totalCount' => $totalCount,
+            ],
+        ]);
     }
 
     public function create()
