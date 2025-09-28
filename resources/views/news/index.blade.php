@@ -9,31 +9,6 @@
     @endauth
   </div>
 
-  <div class="row mb-4 g-3">
-    <div class="col-md-6">
-      <div class="card h-100 border-primary">
-        <div class="card-body d-flex align-items-center justify-content-between">
-          <div>
-            <h5 class="card-title mb-1"><i class="bi bi-bar-chart-line me-1"></i> Rankings</h5>
-            <div class="text-muted small">Acompanhe ATP/WTA atualizados</div>
-          </div>
-          <a class="btn btn-outline-primary" href="{{ route('rankings.index') }}">Ver Rankings</a>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6">
-      <div class="card h-100 border-secondary">
-        <div class="card-body d-flex align-items-center justify-content-between">
-          <div>
-            <h5 class="card-title mb-1"><i class="bi bi-trophy me-1"></i> Torneios</h5>
-            <div class="text-muted small">Calendário e resultados recentes</div>
-          </div>
-          <a class="btn btn-outline-secondary" href="{{ route('tournaments.index') }}">Ver Torneios</a>
-        </div>
-      </div>
-    </div>
-  </div>
-
   @if(session('status'))<div class="alert alert-success">{{ session('status') }}</div>@endif
 
   <div class="row">
