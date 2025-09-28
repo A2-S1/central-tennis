@@ -10,7 +10,7 @@ class PersonalRanking extends Model
     use HasFactory;
 
     protected $fillable = [
-        'user_id', 'title', 'category', 'position', 'points', 'date', 'notes'
+        'user_id', 'title', 'category', 'position', 'points', 'date', 'notes', 'attachment_path'
     ];
 
     protected $casts = [

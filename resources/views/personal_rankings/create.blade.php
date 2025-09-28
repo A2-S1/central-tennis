@@ -4,12 +4,17 @@
 <div class="container">
   <h1>Cadastrar Ranking</h1>
 
-  <form method="POST" action="{{ route('personal_rankings.store') }}" class="row g-3 mt-2">
+  <form method="POST" action="{{ route('personal_rankings.store') }}" class="row g-3 mt-2" enctype="multipart/form-data">
     @csrf
     <div class="col-md-6">
       <label class="form-label">Título</label>
       <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title') }}" required>
       @error('title')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Anexo (imagem/PDF)</label>
+      <input type="file" name="attachment" class="form-control @error('attachment') is-invalid @enderror" accept="image/*,.pdf">
+      @error('attachment')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
     </div>
     <div class="col-md-6">
       <label class="form-label">Categoria</label>

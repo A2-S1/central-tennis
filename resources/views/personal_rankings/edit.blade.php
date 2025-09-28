@@ -4,13 +4,21 @@
 <div class="container">
   <h1>Editar Ranking</h1>
 
-  <form method="POST" action="{{ route('personal_rankings.update', $item) }}" class="row g-3 mt-2">
+  <form method="POST" action="{{ route('personal_rankings.update', $item) }}" class="row g-3 mt-2" enctype="multipart/form-data">
     @csrf
     @method('PUT')
     <div class="col-md-6">
       <label class="form-label">Título</label>
       <input type="text" name="title" class="form-control @error('title') is-invalid @enderror" value="{{ old('title', $item->title) }}" required>
       @error('title')<div class="invalid-feedback">{{ $message }}</div>@enderror
+    </div>
+    <div class="col-md-6">
+      <label class="form-label">Anexo (imagem/PDF)</label>
+      <input type="file" name="attachment" class="form-control @error('attachment') is-invalid @enderror" accept="image/*,.pdf">
+      @error('attachment')<div class="invalid-feedback d-block">{{ $message }}</div>@enderror
+      @if($item->attachment_path)
+        <div class="form-text mt-1">Atual: <a href="{{ asset('storage/'.$item->attachment_path) }}" target="_blank" rel="noopener">ver arquivo</a></div>
+      @endif
     </div>
     <div class="col-md-6">
       <label class="form-label">Categoria</label>

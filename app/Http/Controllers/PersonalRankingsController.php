@@ -55,8 +55,12 @@ class PersonalRankingsController extends Controller
             'points' => 'nullable|integer|min:0|max:1000000',
             'date' => 'nullable|date',
             'notes' => 'nullable|string',
+            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,gif,webp,pdf|max:5120',
         ]);
         $data['user_id'] = Auth::id();
+        if ($request->hasFile('attachment')) {
+            $data['attachment_path'] = $request->file('attachment')->store('personal_rankings', 'public');
+        }
         PersonalRanking::create($data);
         return redirect()->route('personal_rankings.index')->with('status','Ranking cadastrado.');
     }
@@ -77,7 +81,11 @@ class PersonalRankingsController extends Controller
             'points' => 'nullable|integer|min:0|max:1000000',
             'date' => 'nullable|date',
             'notes' => 'nullable|string',
+            'attachment' => 'nullable|file|mimes:jpg,jpeg,png,gif,webp,pdf|max:5120',
         ]);
+        if ($request->hasFile('attachment')) {
+            $data['attachment_path'] = $request->file('attachment')->store('personal_rankings', 'public');
+        }
         $personal_ranking->update($data);
         return redirect()->route('personal_rankings.index')->with('status','Ranking atualizado.');
     }

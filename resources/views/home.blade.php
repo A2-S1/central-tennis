@@ -77,7 +77,7 @@
             <div class="card h-100">
               <div class="card-body">
                 <div class="text-muted small">Meus rankings</div>
-                <div class="display-6">{{-- contador será simples via listagem --}}</div>
+                <div class="display-6">{{ $myPersonalRankings }}</div>
                 <a href="{{ route('personal_rankings.create') }}" class="btn btn-sm btn-primary mt-2">Cadastrar ranking</a>
                 <a href="{{ route('personal_rankings.index') }}" class="btn btn-sm btn-outline-secondary mt-2">Ver lista</a>
               </div>

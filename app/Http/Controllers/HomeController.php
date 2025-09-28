@@ -8,6 +8,7 @@ use App\Models\TennisCourt;
 use App\Models\User;
 use App\Models\LocalTournament;
 use App\Models\TennisMatch;
+use App\Models\PersonalRanking;
 
 class HomeController extends Controller
 {
@@ -33,6 +34,7 @@ class HomeController extends Controller
         $communityCount = User::where('public_profile', true)->count();
         $myCourtsList = $user ? TennisCourt::where('user_id', $user->id)->latest()->take(5)->get() : collect();
         $myLocalTournaments = $user ? LocalTournament::where('user_id', $user->id)->count() : 0;
+        $myPersonalRankings = $user ? PersonalRanking::where('user_id', $user->id)->count() : 0;
 
         // Estatísticas simples dos últimos 20 jogos
         $recentPlayed = 0; $recentWins = 0; $recentLosses = 0;
@@ -52,6 +54,6 @@ class HomeController extends Controller
             }
         }
 
-        return view('home', compact('myCourts', 'communityCount', 'myCourtsList', 'myLocalTournaments', 'recentPlayed', 'recentWins', 'recentLosses'));
+        return view('home', compact('myCourts', 'communityCount', 'myCourtsList', 'myLocalTournaments', 'myPersonalRankings', 'recentPlayed', 'recentWins', 'recentLosses'));
     }
 }
