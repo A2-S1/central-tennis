@@ -111,7 +111,7 @@
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle d-flex align-items-center" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     @php($u = Auth::user())
                                     @if($u && $u->avatar)
-                                        <img class="avatar-thumb" src="{{ asset('storage/'.$u->avatar) }}" alt="avatar">
+                                        <img class="avatar avatar-28 me-2" src="{{ asset('storage/'.$u->avatar) }}" alt="avatar">
                                     @endif
                                     <span>{{ Auth::user()->name }}</span>
                                 </a>
