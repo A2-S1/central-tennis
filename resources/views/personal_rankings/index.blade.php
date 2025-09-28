@@ -4,7 +4,10 @@
 <div class="container">
   <div class="d-flex justify-content-between align-items-center mb-3">
     <h1>Meus Rankings</h1>
-    <a href="{{ route('personal_rankings.create') }}" class="btn btn-primary">Cadastrar ranking</a>
+    <div class="d-flex gap-2">
+      <a href="{{ route('personal_rankings.create') }}" class="btn btn-primary">Cadastrar ranking</a>
+      <a href="{{ route('personal_rankings.export', request()->all()) }}" class="btn btn-outline-secondary">Exportar CSV</a>
+    </div>
   </div>
 
   @if(session('status'))<div class="alert alert-success">{{ session('status') }}</div>@endif

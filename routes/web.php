@@ -36,6 +36,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/my-rankings/{personal_ranking}/edit', [\App\Http\Controllers\PersonalRankingsController::class, 'edit'])->name('personal_rankings.edit');
     Route::put('/my-rankings/{personal_ranking}', [\App\Http\Controllers\PersonalRankingsController::class, 'update'])->name('personal_rankings.update');
     Route::delete('/my-rankings/{personal_ranking}', [\App\Http\Controllers\PersonalRankingsController::class, 'destroy'])->name('personal_rankings.destroy');
+    Route::get('/my-rankings-export', [\App\Http\Controllers\PersonalRankingsController::class, 'export'])->name('personal_rankings.export');
 });
 // Admin
 Route::middleware(['auth','admin'])->prefix('admin')->name('admin.')->group(function(){
