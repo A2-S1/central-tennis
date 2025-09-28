@@ -12,7 +12,7 @@
         <div class="card-body d-flex flex-wrap align-items-start gap-3">
           <div>
             @if($player->avatar)
-              <img src="{{ asset('storage/'.$player->avatar) }}" alt="{{ $player->name }}" style="width:128px;height:128px;object-fit:cover;border-radius:50%">
+              <img src="{{ asset('storage/'.$player->avatar) }}" alt="{{ $player->name }}" style="width:128px;height:128px;object-fit:contain;border-radius:50%;background:#fff">
             @else
               <div style="width:128px;height:128px;border-radius:50%;background:#e9ecef;display:flex;align-items:center;justify-content:center;font-size:48px;">👤</div>
             @endif
